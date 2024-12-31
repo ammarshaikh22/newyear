@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2025</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            flex-direction: column;
+            overflow-y: hidden;
+            padding: 20px;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 500px;
+            /* Envelope size */
+            height: 300px;
+            background: linear-gradient(45deg, #ff477e, #f06);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: #f5e6cc;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top center;
+            animation: openFlap 2s ease forwards 2s;
+        }
+
+        .letter {
+            position: absolute;
+            bottom: -100%;
+            /* Start inside the envelope */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 450px;
+            /* Adjusted width */
+            height: 450px;
+            /* Adjusted height */
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #444;
+            z-index: 2;
+            animation: slideOut 2s ease forwards 3s;
+            max-height: 80%;
+            /* Allow scrolling within the letter box */
+            overflow-y: auto;
+            /* Enable vertical scrolling if content overflows */
+        }
+
+        .letter h2 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #ff477e;
+        }
+
+        .letter p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .letter .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #888;
+        }
+
+        .decorations {
+            position: absolute;
+            top: 10%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .decorations span {
+            animation: glow 1.5s infinite alternate;
+        }
+
+        .animation-side {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .animation-side div {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            animation: moveAround 5s infinite linear;
+            opacity: 0.5;
+        }
+
+        @keyframes moveAround {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(200px, 150px);
+            }
+
+            50% {
+                transform: translate(-200px, 200px);
+            }
+
+            75% {
+                transform: translate(100px, -100px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ff5722, 0 0 30px #ff5722;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #fff, 0 0 40px #ff5722, 0 0 60px #ff5722;
+            }
+        }
+
+        @keyframes slideOut {
+            0% {
+                bottom: -100%;
+                /* Start hidden inside the envelope */
+            }
+
+            100% {
+                bottom: 20px;
+                /* Move the letter just above the envelope */
+            }
+        }
+
+        @keyframes openFlap {
+            0% {
+                transform: rotateX(0deg);
+            }
+
+            100% {
+                transform: rotateX(-180deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="fireworks"></canvas>
+    <div class="decorations">
+        <span>✨ Welcome 2025! ✨</span>
+    </div>
+
+    <!-- Side animation elements -->
+    <div class="animation-side">
+        <div style="top: 30%; left: 20%; width: 50px; height: 50px;"></div>
+        <div style="top: 50%; left: 70%; width: 60px; height: 60px;"></div>
+        <div style="top: 80%; left: 30%; width: 40px; height: 40px;"></div>
+        <div style="top: 10%; left: 80%; width: 70px; height: 70px;"></div>
+    </div>
+
+    <div class="container">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">
+                <h2>Happy New Year 2025!</h2>
+                <p>Dear Khadija,</p>
+                <p>You fill my life with joy, love, and laughter. As the new year begins, my heart is filled with
+                    gratitude for you. ❤️</p>
+                <p>Here’s to making 2025 our best year yet, hand in hand, heart to heart. 💖</p>
+                <p class="signature">Forever yours,</p>
+                <p class="signature">Ammar ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fireworks Animation
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+
+        function createFirework(x, y) {
+            const colors = ['#ff5733', '#33ff57', '#3357ff', '#ff33a1', '#a133ff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x,
+                    y,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: Math.random() * 4 + 1,
+                    radius: Math.random() * 3,
+                    color,
+                    life: 100
+                });
+            }
+        }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, index) => {
+                particle.x += Math.cos(particle.angle) * particle.speed;
+                particle.y += Math.sin(particle.angle) * particle.speed;
+                particle.life -= 1;
+
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+
+                if (particle.life <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+
+            if (Math.random() < 0.05) {
+                createFirework(Math.random() * canvas.width, Math.random() * canvas.height / 2);
+            }
+
+            requestAnimationFrame(animateFireworks);
+        }
+
+        animateFireworks();
+    </script>
+</body>
+
+</html>
